@@ -7,38 +7,34 @@
 - מוצר
 ## לעובד ROUTES  מיפוי
  - שליפת רשימת עובדים 
-GET https://localhost:7275/api/Student
+GET https://localhost:7188/api/Employee
 - שליפת עובד לפי מזהה
- GET https://localhost:7275/api/Student/1
+ GET https://localhost:7188/api/Employee/1
 - הוספת עובד
-POST  https://localhost:7275/api/Student
+POST  https://localhost:7188/api/Employee
 - עדכון עובד
-PUT https://localhost:7275/api/Student/1
-- עדכון סטטוס סטודנט
-PUT  https://localhost:7275/api/Student/1/status
+PUT https://localhost:7188/api/Employee/1
 - מחיקת עובד
-DELETE https://localhost:7275/api/Student/1
+DELETE https://localhost:7188/api/Employee/1
 ##  ספק ROUTES  מיפוי
  - שליפת רשימת ספקים
-GET https://localhost:7275/api/Teacher
+GET https://localhost:7188/api/Provider
 - שליפת ספק לפי מזהה
- GET   https://localhost:7275/api/Teacher/1
+GET https://localhost:7188/api/Provider/1
 - הוספת ספק
-POST  https://localhost:7275/api/Teacher
+POST https://localhost:7188/api/Provider
 - עדכון ספק
-PUT  https://localhost:7275/api/Teacher/1
-- עדכון סטטוס מרצה
-PUT    https://localhost:7275/api/Teacher/1/status
+PUT https://localhost:7188/api/Provider/1
 - מחיקת ספק
-DELETE   https://localhost:7275/api/Teacher/1
+DELETE https://localhost:7188/api/Provider/1
 ##   מוצר ROUTES  מיפוי
  - שליפת רשימת מוצרים
-GET https://localhost:7275/api/Course
+GET https://localhost:7188/api/Product
 - שליפת מוצר  לפי מחיר
- GET   https://localhost:7275/api/Course/1
+ GET https://localhost:7188/api/Product/1
 - הוספת מוצר
-POST  https://localhost:7275/api/Course
+POST  https://localhost:7188/api/Product
 - עדכון מוצר
-PUT https://localhost:7275/api/Course/1
+PUT https://localhost:7188/api/Product/1
 - מחיקת מוצר
-DELETE   https://localhost:7275/api/Course/1
+DELETE   https://localhost:7188/api/Product/1
