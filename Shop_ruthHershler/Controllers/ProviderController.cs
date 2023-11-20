@@ -21,7 +21,7 @@ namespace Shop_ruthHershler.Controllers
         [HttpGet("{id}")]
         public ActionResult<Provider> Get(int id)
         {
-            var provider = providers[id];
+            var provider = providers.Find(x => x.Id == id);
             if(provider == null)
                 return NotFound();
             return Ok(provider);  

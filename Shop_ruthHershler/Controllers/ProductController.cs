@@ -18,10 +18,10 @@ namespace Shop_ruthHershler.Controllers
         }
 
         // GET api/<EmployeeController>/5
-        [HttpGet("{id}")]
-        public ActionResult<Product> Get(int id)
+        [HttpGet("{price}")]
+        public ActionResult<Product> Get(int price)
         {
-            var prod = products[id];
+            var prod = products.Find(x => x.Price == price);
             if (prod == null)
                 return NotFound();
             return Ok(prod);
@@ -42,6 +42,18 @@ namespace Shop_ruthHershler.Controllers
             if (prod == null)
                 return NotFound();
             products.Remove(prod);
+            products.Add(product);
+            return Ok();
+        }
+        // PUT api/<EmployeeController>/5
+        [HttpPut("{id}/{price}")]
+        public ActionResult<Product> Put(int id,int price, [FromBody] Product product)
+        {
+            var prod = products.Find(e => e.Id == id);
+            if (prod == null)
+                return NotFound();
+            products.Remove(prod);
+            prod.Price = price;
             products.Add(product);
             return Ok();
         }

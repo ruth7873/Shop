@@ -21,7 +21,7 @@ namespace Shop_ruthHershler.Controllers
         [HttpGet("{id}")]
         public ActionResult<Employee> Get(int id)
         {
-            var emp = employees[id];
+            var emp = employees.Find(match => match.Id == id);
             if (emp == null)
                 return NotFound();
             return Ok(emp);
