@@ -1,47 +1,46 @@
 # Shop
 
-@@ -1,4 +1,5 @@
 # Shop# תיאור הפרויקט
-# School
+# Shop
 # תיאור הפרויקט
 ## ישויות
-- סטודנט
-- מרצה
-- קורס
-## לסטודנט ROUTES  מיפוי
- - שליפת רשימת סטודנטים 
+- עובד
+- ספק
+- מוצר
+## לעובד ROUTES  מיפוי
+ - שליפת רשימת עובדים 
 GET https://localhost:7275/api/Student
-- שליפת סטודנט לפי מזהה
+- שליפת עובד לפי מזהה
  GET https://localhost:7275/api/Student/1
-- הוספת סטודנט
+- הוספת עובד
 POST  https://localhost:7275/api/Student
-- עדכון סטודנט
+- עדכון עובד
 PUT https://localhost:7275/api/Student/1
 - עדכון סטטוס סטודנט
 PUT  https://localhost:7275/api/Student/1/status
-- מחיקת סטודנט
+- מחיקת עובד
 DELETE https://localhost:7275/api/Student/1
-##  מרצה ROUTES  מיפוי
- - שליפת רשימת מרצים
+##  ספק ROUTES  מיפוי
+ - שליפת רשימת ספקים
 GET https://localhost:7275/api/Teacher
-- שליפת מרצה לפי מזהה
+- שליפת ספק לפי מזהה
  GET   https://localhost:7275/api/Teacher/1
-- הוספת מרצה
+- הוספת ספק
 POST  https://localhost:7275/api/Teacher
-- עדכון מרצה
+- עדכון ספק
 PUT  https://localhost:7275/api/Teacher/1
 - עדכון סטטוס מרצה
 PUT    https://localhost:7275/api/Teacher/1/status
-- מחיקת מרצה
+- מחיקת ספק
 DELETE   https://localhost:7275/api/Teacher/1
-##   קורס ROUTES  מיפוי
- - שליפת רשימת קורסים
+##   מוצר ROUTES  מיפוי
+ - שליפת רשימת מוצרים
 GET https://localhost:7275/api/Course
-- שליפת קורס  לפי מזהה
+- שליפת מוצר  לפי מחיר
  GET   https://localhost:7275/api/Course/1
-- הוספת קורס
+- הוספת מוצר
 POST  https://localhost:7275/api/Course
-- עדכון קורס
+- עדכון מוצר
 PUT https://localhost:7275/api/Course/1
-- מחיקת קורס
+- מחיקת מוצר
 DELETE   https://localhost:7275/api/Course/1
