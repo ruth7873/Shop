@@ -5,7 +5,7 @@
 - עובד
 - ספק
 - מוצר
-## לעובד ROUTES  מיפוי
+## מיפוי Route לעובד
  - שליפת רשימת עובדים 
 GET https://localhost:7188/api/Employee
 - שליפת עובד לפי מזהה
@@ -16,7 +16,7 @@ POST  https://localhost:7188/api/Employee
 PUT https://localhost:7188/api/Employee/1
 - מחיקת עובד
 DELETE https://localhost:7188/api/Employee/1
-##  ספק ROUTES  מיפוי
+## מיפוי Route לספק
  - שליפת רשימת ספקים
 GET https://localhost:7188/api/Provider
 - שליפת ספק לפי מזהה
@@ -27,7 +27,7 @@ POST https://localhost:7188/api/Provider
 PUT https://localhost:7188/api/Provider/1
 - מחיקת ספק
 DELETE https://localhost:7188/api/Provider/1
-##   מוצר ROUTES  מיפוי
+##   מיפוי Route למוצר
  - שליפת רשימת מוצרים
 GET https://localhost:7188/api/Product
 - שליפת מוצר  לפי מחיר
