@@ -18,10 +18,10 @@ namespace Shop_ruthHershler.Controllers
         }
 
         // GET api/<EmployeeController>/5
-        [HttpGet("{price}")]
-        public ActionResult<Product> Get(int price)
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
         {
-            var prod = products.Find(x => x.Price == price);
+            var prod = products.Find(x => x.Id == id);
             if (prod == null)
                 return NotFound();
             return Ok(prod);
@@ -36,7 +36,7 @@ namespace Shop_ruthHershler.Controllers
 
         // PUT api/<EmployeeController>/5
         [HttpPut("{id}")]
-        public ActionResult<Product> Put(int id, [FromBody] Product product)
+        public IActionResult Put(int id, [FromBody] Product product)
         {
             var prod = products.Find(e => e.Id == id);
             if (prod == null)
@@ -46,21 +46,19 @@ namespace Shop_ruthHershler.Controllers
             return Ok();
         }
         // PUT api/<EmployeeController>/5
-        [HttpPut("{id}/{price}")]
-        public ActionResult<Product> Put(int id,int price, [FromBody] Product product)
+        [HttpPut("{id}/price")]
+        public IActionResult Put(int id, [FromBody]  int price)
         {
             var prod = products.Find(e => e.Id == id);
             if (prod == null)
                 return NotFound();
-            products.Remove(prod);
             prod.Price = price;
-            products.Add(product);
             return Ok();
         }
 
         // DELETE api/<EmployeeController>/5
         [HttpDelete("{id}")]
-        public ActionResult<Product> Delete(int id)
+        public IActionResult Delete(int id)
         {
             var product = products.Find(e => e.Id == id);
             if (product == null)

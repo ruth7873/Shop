@@ -19,7 +19,7 @@ namespace Shop_ruthHershler.Controllers
 
         // GET api/<EmployeeController>/5
         [HttpGet("{id}")]
-        public ActionResult<Provider> Get(int id)
+        public IActionResult Get(int id)
         {
             var provider = providers.Find(x => x.Id == id);
             if(provider == null)
@@ -36,7 +36,7 @@ namespace Shop_ruthHershler.Controllers
 
         // PUT api/<EmployeeController>/5
         [HttpPut("{id}")]
-        public ActionResult<Provider> Put(int id, [FromBody] Provider provider)
+        public IActionResult Put(int id, [FromBody] Provider provider)
         {
             var provider2 = providers.Find(e => e.Id == id);
             if (provider2 == null)
@@ -48,7 +48,7 @@ namespace Shop_ruthHershler.Controllers
 
         // DELETE api/<EmployeeController>/5
         [HttpDelete("{id}")]
-        public ActionResult<Provider> Delete(int id)
+        public IActionResult Delete(int id)
         {
             var provider = providers.Find(e => e.Id == id);
             if(provider == null)
