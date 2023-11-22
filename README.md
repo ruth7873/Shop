@@ -37,6 +37,6 @@ POST  https://localhost:7188/api/Product
 - עדכון מוצר
 PUT https://localhost:7188/api/Product/1
 - עדכון מחיר מוצר
-https://localhost:7188/api/Product/1/price
+PUT https://localhost:7188/api/Product/1/price
 - מחיקת מוצר
 DELETE   https://localhost:7188/api/Product/1
