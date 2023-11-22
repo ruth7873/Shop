@@ -2,20 +2,20 @@
 
 # תיאור הפרויקט
 ## ישויות
-- עובד
+- הזמנה
 - ספק
 - מוצר
-## מיפוי Route לעובד
- - שליפת רשימת עובדים 
-GET https://localhost:7188/api/Employee
-- שליפת עובד לפי מזהה
- GET https://localhost:7188/api/Employee/1
-- הוספת עובד
-POST  https://localhost:7188/api/Employee
-- עדכון עובד
-PUT https://localhost:7188/api/Employee/1
-- מחיקת עובד
-DELETE https://localhost:7188/api/Employee/1
+## מיפוי Route להזמנה
+ - שליפת רשימת הזמנות 
+GET https://localhost:7188/api/Order
+- שליפת הזמנה לפי מזהה
+ GET https://localhost:7188/api/Order/1
+- הוספת הזמנה
+POST  https://localhost:7188/api/Order
+- עדכון הזמנה
+PUT https://localhost:7188/api/Order/1
+- מחיקת הזמנה
+DELETE https://localhost:7188/api/Order/1
 ## מיפוי Route לספק
  - שליפת רשימת ספקים
 GET https://localhost:7188/api/Provider
@@ -30,13 +30,13 @@ DELETE https://localhost:7188/api/Provider/1
 ##   מיפוי Route למוצר
  - שליפת רשימת מוצרים
 GET https://localhost:7188/api/Product
-- שליפת מוצר  לפי מחיר
+- שליפת מוצר  לפי מזהה
  GET https://localhost:7188/api/Product/1
 - הוספת מוצר
 POST  https://localhost:7188/api/Product
 - עדכון מוצר
 PUT https://localhost:7188/api/Product/1
 - עדכון מחיר מוצר
-PUT https://localhost:7188/api/Product/1/15
+PUT https://localhost:7188/api/Product/1/price
 - מחיקת מוצר
 DELETE   https://localhost:7188/api/Product/1
