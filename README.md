@@ -30,13 +30,13 @@ DELETE https://localhost:7188/api/Provider/1
 ##   מיפוי Route למוצר
  - שליפת רשימת מוצרים
 GET https://localhost:7188/api/Product
-- שליפת מוצר  לפי מחיר
+- שליפת מוצר  לפי מזהה
  GET https://localhost:7188/api/Product/1
 - הוספת מוצר
 POST  https://localhost:7188/api/Product
 - עדכון מוצר
 PUT https://localhost:7188/api/Product/1
 - עדכון מחיר מוצר
-PUT https://localhost:7188/api/Product/1/15
+https://localhost:7188/api/Product/1/price
 - מחיקת מוצר
 DELETE   https://localhost:7188/api/Product/1
