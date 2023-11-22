@@ -5,17 +5,17 @@
 - עובד
 - ספק
 - מוצר
-## מיפוי Route לעובד
- - שליפת רשימת עובדים 
-GET https://localhost:7188/api/Employee
-- שליפת עובד לפי מזהה
- GET https://localhost:7188/api/Employee/1
-- הוספת עובד
-POST  https://localhost:7188/api/Employee
-- עדכון עובד
-PUT https://localhost:7188/api/Employee/1
-- מחיקת עובד
-DELETE https://localhost:7188/api/Employee/1
+## מיפוי Route להזמנה
+ - שליפת רשימת הזמנות 
+GET https://localhost:7188/api/Order
+- שליפת הזמנה לפי מזהה
+ GET https://localhost:7188/api/Order/1
+- הוספת הזמנה
+POST  https://localhost:7188/api/Order
+- עדכון הזמנה
+PUT https://localhost:7188/api/Order/1
+- מחיקת הזמנה
+DELETE https://localhost:7188/api/Order/1
 ## מיפוי Route לספק
  - שליפת רשימת ספקים
 GET https://localhost:7188/api/Provider
