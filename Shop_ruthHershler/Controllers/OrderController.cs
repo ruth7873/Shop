@@ -9,19 +9,19 @@ namespace Shop_ruthHershler.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-        readonly static List<Order> orders = new List<Order>();
+        private DataContext context;
         // GET: api/<OrderController>
         [HttpGet]
         public IEnumerable<Order> Get()
         {
-            return orders;
+            return context.Orders;
         }
 
         // GET api/<OrderController>/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var ord = orders.Find(e => e.Id == id);
+            var ord = context.Orders.Find(e => e.Id == id);
             if (ord == null)
                 return NotFound();
             return Ok(ord);
@@ -31,18 +31,18 @@ namespace Shop_ruthHershler.Controllers
         [HttpPost]
         public void Post([FromBody] Order order)
         {
-            orders.Add(order);
+            context.Orders.Add(order);
         }
 
         // PUT api/<OrderController>/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] Order order)
         {
-            var ord = orders.Find(e => e.Id == id);
+            var ord = context.Orders.Find(e => e.Id == id);
             if (ord == null)
                 return NotFound();
-            orders.Remove(ord);
-            orders.Add(order);
+            context.Orders.Remove(ord);
+            context.Orders.Add(order);
             return Ok();
         }
 
@@ -50,10 +50,10 @@ namespace Shop_ruthHershler.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var ord = orders.Find(e => e.Id == id);
+            var ord = context.Orders.Find(e => e.Id == id);
             if (ord == null)
                 return NotFound();
-            orders.Remove(ord);
+            context.Orders.Remove(ord);
             return Ok();
         }
     }

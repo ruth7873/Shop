@@ -9,19 +9,19 @@ namespace Shop_ruthHershler.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        readonly static List<Product> products = new List<Product>();
+        private DataContext context;
         // GET: api/<EmployeeController>
         [HttpGet]
         public IEnumerable<Product> Get()
         {
-            return products;
+            return context.Products ;
         }
 
         // GET api/<EmployeeController>/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var prod = products.Find(x => x.Id == id);
+            var prod = context.Products.Find(x => x.Id == id);
             if (prod == null)
                 return NotFound();
             return Ok(prod);
@@ -31,25 +31,25 @@ namespace Shop_ruthHershler.Controllers
         [HttpPost]
         public void Post([FromBody] Product product)
         {
-            products.Add(product);
+            context.Products.Add(product);
         }
 
         // PUT api/<EmployeeController>/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] Product product)
         {
-            var prod = products.Find(e => e.Id == id);
+            var prod = context.Products.Find(e => e.Id == id);
             if (prod == null)
                 return NotFound();
-            products.Remove(prod);
-            products.Add(product);
+            context.Products.Remove(prod);
+            context.Products.Add(product);
             return Ok();
         }
         // PUT api/<EmployeeController>/5
         [HttpPut("{id}/price")]
         public IActionResult Put(int id, [FromBody]  int price)
         {
-            var prod = products.Find(e => e.Id == id);
+            var prod = context.Products.Find(e => e.Id == id);
             if (prod == null)
                 return NotFound();
             prod.Price = price;
@@ -60,10 +60,10 @@ namespace Shop_ruthHershler.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var product = products.Find(e => e.Id == id);
+            var product = context.Products.Find(e => e.Id == id);
             if (product == null)
                 return NotFound();
-            products.Remove(product);
+            context.Products.Remove(product);
             return Ok();
         }
     }
