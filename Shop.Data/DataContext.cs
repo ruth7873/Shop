@@ -6,7 +6,6 @@ namespace Shop_ruthHershler
     {
         public List<Order> Orders { get; set; }
         public List<Product> Products { get; set; }
-
         public List<Provider> Providers { get; set; } 
 
 
