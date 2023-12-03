@@ -1,0 +1,76 @@
+<div class="card" *ngIf="student">
+    <div class="card-body">
+        <form [formGroup]="studentForm"  >
+            <div class="form-group">
+                <label for="name">student name</label>
+                <input type="text" class="form-control" id="name" formControlName="name" [value]="student.name" >
+                <ng-container *ngIf="studentForm.controls['name'].errors&& !studentForm.controls['name'].pristine" >
+                    <div class="alert alert-danger"> not name valid</div>
+                </ng-container>
+            </div>
+
+            <div class="form-group">
+                <label for="famalyName">famalyName</label>
+                <input type="text" class="form-control" id="famalyName" formControlName="famalyName" [value]="student.famalyName" >            
+                <ng-container *ngIf="studentForm.controls['famalyName'].errors&& !studentForm.controls['famalyName'].pristine" >
+                    <div class="alert alert-danger">this feild is required</div>
+                </ng-container>
+            </div>
+            <div class="form-group">   
+                <label for="adress">adress</label>
+                <input type="text" class="form-control" id="adress" formControlName="adress" [value]="student.adress" >
+                <ng-container *ngIf="studentForm.controls['adress'].errors&& !studentForm.controls['adress'].pristine" >
+                     <div *ngIf="studentForm.controls['adress'].errors['required']" class="alert alert-danger">this feild is required</div>
+                     <div *ngIf="studentForm.controls['adress'].errors['minlength']" class="alert alert-danger">this feild </div>
+                </ng-container>
+            </div>
+            <div class="form-group"> 
+                <label for="pon">pon</label>
+                <input id="pon" type="number" [value]="student.pon" formControlName="pon">
+                <ng-container *ngIf="studentForm.controls['pon'].errors&& !studentForm.controls['pon'].pristine">
+                    <div *ngIf="studentForm.controls['pon'].errors['required']" class="alert alert-danger">this feild is required</div>
+                    <div *ngIf="studentForm.controls['pon'].errors['minlength']" class="alert alert-danger">this feild is les deghit </div>
+                    <div *ngIf="studentForm.controls['pon'].errors['maxlength']" class="alert alert-danger">this feild is more deghit </div>
+                </ng-container>
+            </div>
+            <div class="form-group">
+                <label for="avgMarks">Avg Mark</label>
+                <input type="text" id="avgMarks" class="form-control" [value]="student.avgMarks" formControlName="avgMarks"/>
+            </div>
+            <div class="form-group">
+                <label for="course">Course: </label>
+                <select id="route"  formControlName="routeType">
+                    <option *ngFor="let r of Rotes" [value]="r.id"> {{r.name}}</option>
+                </select>
+            </div>
+
+            <div class="form-control">  
+                <label for="year">Year Number:</label>
+                <br>
+                <input type="radio" name="year" formControlName="year"  value="year.A"/> First Year
+                <br>
+                <input type="radio" name="year" formControlName="year"   value="year.B"/>Second Year
+                <br>
+                <input type="radio" name="year" formControlName="year"  value="year.C"/>Third Year
+                <br>   
+                <div [ngSwitch]="studentForm.controls['year'].value">
+                    <div *ngSwitchCase="'year.A'">210 days</div>
+                    <div *ngSwitchCase="'year.B'">150 days</div>
+                    <div *ngSwitchCase="'year.C'">195 days</div>
+                    <div *ngSwitchDefault>0</div>
+                </div>
+            </div>      
+            <div *ngIf="student.active==false else ective">
+                the departure date: {{student.departure_date}}
+             </div> 
+             <ng-template #ective>
+                 <label for="active">ective</label>
+                 <input  class="form-control" formControlName="active" id="ective" [value]="student.active">
+             </ng-template> 
+
+            <form >
+            </form> 
+            <button class="save" (click)="save()" [disabled]="!studentForm.valid">save</button>
+        </form>
+    </div>
+</div>

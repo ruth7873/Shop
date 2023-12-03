@@ -1,0 +1,7 @@
+.form-control.ng-valid{
+    border-left: 5px solid green;
+}
+
+.form-control.ng-dirty.ng-invalid{
+    background-color: rgb(128, 128, 128, 30%);
+}
