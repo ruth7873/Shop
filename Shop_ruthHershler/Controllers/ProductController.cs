@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Shop_ruthHershler.Entities;
+using Shop.Core.Entities;
+using Shop.Core.Service;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,19 +10,23 @@ namespace Shop_ruthHershler.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private DataContext context;
+        private readonly IProductService _productService;
+        public ProductController(IProductService productService)
+        {
+            _productService = productService;
+        }
         // GET: api/<EmployeeController>
         [HttpGet]
-        public IEnumerable<Product> Get()
+        public IActionResult Get()
         {
-            return context.Products ;
+            return Ok(_productService.GetProducts());
         }
 
         // GET api/<EmployeeController>/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var prod = context.Products.Find(x => x.Id == id);
+            var prod = _productService.GetProductById(id);
             if (prod == null)
                 return NotFound();
             return Ok(prod);
@@ -31,40 +36,27 @@ namespace Shop_ruthHershler.Controllers
         [HttpPost]
         public void Post([FromBody] Product product)
         {
-            context.Products.Add(product);
+           _productService.AddProduct(product);
         }
 
         // PUT api/<EmployeeController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Product product)
+        public void Put(int id, [FromBody] Product product)
         {
-            var prod = context.Products.Find(e => e.Id == id);
-            if (prod == null)
-                return NotFound();
-            context.Products.Remove(prod);
-            context.Products.Add(product);
-            return Ok();
+      _productService.UpdateProduct(id, product);
         }
         // PUT api/<EmployeeController>/5
         [HttpPut("{id}/price")]
-        public IActionResult Put(int id, [FromBody]  int price)
+        public void Put(int id, [FromBody]  int price)
         {
-            var prod = context.Products.Find(e => e.Id == id);
-            if (prod == null)
-                return NotFound();
-            prod.Price = price;
-            return Ok();
+           _productService.UpdateProductPrice(id, price);
         }
 
         // DELETE api/<EmployeeController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public void Delete(int id)
         {
-            var product = context.Products.Find(e => e.Id == id);
-            if (product == null)
-                return NotFound();
-            context.Products.Remove(product);
-            return Ok();
+          _productService.DeleteProduct(id);
         }
     }
 }

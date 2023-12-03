@@ -1,11 +1,5 @@
-﻿using Shop.Core.Repositories;
-using Shop_ruthHershler;
-using Shop_ruthHershler.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Shop.Core.Entities;
+using Shop.Core.Repositories;
 
 namespace Shop.Data.Repositories
 {
@@ -17,9 +11,36 @@ namespace Shop.Data.Repositories
             _context = context;
         }
 
-        public List<Product> GetProducts()
+        public IEnumerable<Product> GetProducts()
         {
-           return _context.Products;
+            return _context.Products;
+        }
+        public Product GetProductById(int id)
+        {
+            return _context.Products.Find(p => p.Id == id);
+        }
+        public void AddProduct(Product product)
+        {
+            _context.Products.Add(product);
+        }
+        public void UpdateProduct(int id, Product product)
+        {
+            Product product1 = _context.Products.Find(p => p.Id == id);
+            if (product1 != null)
+                _context.Products.Remove(product1);
+            _context.Products.Add(product);
+        }
+        public void UpdateProductPrice(int id, int price)
+        {
+            Product product = _context.Products.Find(p => p.Id == id);
+            if (product != null)
+                _context.Products.Find(p => p.Id == id).Price = price;
+        }
+        public void DeleteProduct(int id)
+        {
+            Product p = _context.Products.Find(p => p.Id == id);
+            if(p != null)
+                _context.Products.Remove(p);    
         }
     }
 }

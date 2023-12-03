@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Shop_ruthHershler.Entities;
+using Shop.Core.Entities;
+using Shop.Core.Service;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,20 +10,23 @@ namespace Shop_ruthHershler.Controllers
     [ApiController]
     public class ProviderController : ControllerBase
     {
-        private DataContext context;
-
+        private readonly IProviderService _providerService;
+        public ProviderController(IProviderService providerService)
+        {
+            _providerService = providerService;
+        }
         // GET: api/<EmployeeController>
         [HttpGet]
-        public IEnumerable<Provider> Get()
+        public IActionResult Get()
         {
-            return context.Providers;
+            return Ok(_providerService.GetProviders());
         }
 
         // GET api/<EmployeeController>/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var provider = context.Providers.Find(x => x.Id == id);
+            var provider = _providerService.GetProviderById(id);
             if(provider == null)
                 return NotFound();
             return Ok(provider);  
@@ -32,30 +36,21 @@ namespace Shop_ruthHershler.Controllers
         [HttpPost]
         public void Post([FromBody] Provider provider)
         {
-            context.Providers.Add(provider);
+            _providerService.AddProvider(provider);
         }
 
         // PUT api/<EmployeeController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Provider provider)
+        public void Put(int id, [FromBody] Provider provider)
         {
-            var provider2 = context.Providers.Find(e => e.Id == id);
-            if (provider2 == null)
-                return NotFound();
-            context.Providers.Remove(provider2);
-            context.Providers.Add(provider);
-            return Ok();            
+                _providerService.UpdateProvider(id, provider);    
         }
 
         // DELETE api/<EmployeeController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public void Delete(int id)
         {
-            var provider = context.Providers.Find(e => e.Id == id);
-            if(provider == null)
-                return NotFound();
-            context.Providers.Remove(provider);
-            return Ok();
+           _providerService.DeleteProvider(id);
         }
     }
 }

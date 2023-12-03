@@ -1,10 +1,11 @@
-﻿namespace Shop_ruthHershler.Entities
+﻿namespace Shop.Core.Entities
 {
     public class Order
     {
         public int Id { get; set; }
-        public Dictionary<Product,int> Products { get; set; }
-        public Provider CurrentProvider { get; set; }
+        public int ProductId { get; set; }
+        public int Count {  get; set; }
+        public int ProviderId { get; set; }
         public  int SumOrder { get; set; }
 
     }

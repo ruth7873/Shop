@@ -1,15 +1,15 @@
-﻿using Shop_ruthHershler.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Shop.Core.Entities;
 
 namespace Shop.Core.Repositories
 {
     public interface IProductRepository
     {
-        List<Product> GetProducts();
-      
+        IEnumerable<Product> GetProducts();
+        Product GetProductById(int id);
+        void AddProduct(Product product);
+        void UpdateProduct(int id,Product product);
+        void UpdateProductPrice(int id, int price);
+        void DeleteProduct(int id);
+
     }
 }

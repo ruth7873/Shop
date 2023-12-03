@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Shop.Core.Entities;
 using Shop.Core.Service;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -19,14 +20,14 @@ namespace Shop_ruthHershler.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            return Ok(_orderService.GetOrders());
+            return Ok(_orderService.GetAllOrders());
         }
 
         // GET api/<OrderController>/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var ord = context.Orders.Find(e => e.Id == id);
+            var ord = _orderService.GetOrderByID(id);
             if (ord == null)
                 return NotFound();
             return Ok(ord);
@@ -36,30 +37,21 @@ namespace Shop_ruthHershler.Controllers
         [HttpPost]
         public void Post([FromBody] Order order)
         {
-            context.Orders.Add(order);
+            _orderService.AddOrder(order);
         }
 
         // PUT api/<OrderController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Order order)
+        public void Put(int id, [FromBody] Order order)
         {
-            var ord = context.Orders.Find(e => e.Id == id);
-            if (ord == null)
-                return NotFound();
-            context.Orders.Remove(ord);
-            context.Orders.Add(order);
-            return Ok();
+            _orderService.UpdateOrder(id,order);
         }
 
         // DELETE api/<OrderController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public void Delete(int id)
         {
-            var ord = context.Orders.Find(e => e.Id == id);
-            if (ord == null)
-                return NotFound();
-            context.Orders.Remove(ord);
-            return Ok();
+            _orderService.DeleteOrder(id);
         }
     }
 }

@@ -1,15 +1,14 @@
-﻿using Shop_ruthHershler.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Shop.Core.Entities;
+
 
 namespace Shop.Core.Repositories
 {
     public interface IProviderRepository
     {
-        List<Provider> GetProviders();
-        
+        IEnumerable<Provider> GetProviders();        
+        Provider GetProviderById(int id);
+        void AddProvider(Provider provider);
+        void UpdateProvider(int id,Provider provider);
+        void DeleteProvider(int id);
     }
 }

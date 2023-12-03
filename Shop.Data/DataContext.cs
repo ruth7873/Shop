@@ -1,6 +1,6 @@
-﻿using Shop_ruthHershler.Entities;
+﻿using Shop.Core.Entities;
 
-namespace Shop_ruthHershler
+namespace Shop.Data
 {
     public class DataContext
     {

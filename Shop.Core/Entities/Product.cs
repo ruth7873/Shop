@@ -1,4 +1,4 @@
-﻿namespace Shop_ruthHershler.Entities
+﻿namespace Shop.Core.Entities
 {
     public class Product
     {public int Id { get; set; }
