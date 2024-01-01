@@ -1,19 +1,16 @@
-﻿using Shop.Core.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Shop.Core.Entities;
 
 namespace Shop.Data
 {
-    public class DataContext
+    public class DataContext: DbContext
     {
-        public List<Order> Orders { get; set; }
-        public List<Product> Products { get; set; }
-        public List<Provider> Providers { get; set; } 
-
-
-        public DataContext()
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Provider> Providers { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            Orders= new List<Order>();
-            Products =  new List<Product>();
-            Providers= new List<Provider>();
+            optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=sample_db");
         }
 
     }

@@ -21,7 +21,7 @@ namespace Shop.Data.Repositories
         }
         public Order GetOrderById(int id)
         {
-            return _context.Orders.Find(o => o.Id == id);  
+            return _context.Orders.ToList().Find(o => o.Id == id);  
         }
         public void AddOrder(Order order)
         {
@@ -29,14 +29,14 @@ namespace Shop.Data.Repositories
         }
         public void UpdateOrder(int id, Order order)
         {
-            Order order1 = _context.Orders.Find(o => o.Id == id);
+            Order order1 = _context.Orders.ToList().Find(o => o.Id == id);
         if(order1 != null) 
                 _context.Orders.Remove(order1);
             _context.Orders.Add(order);
         }
         public void DeleteOrder(int id)
         {
-            _context.Orders.Remove(_context.Orders.Find(o =>o.Id == id));
+            _context.Orders.Remove(_context.Orders.ToList().Find(o =>o.Id == id));
         }
     }
 }

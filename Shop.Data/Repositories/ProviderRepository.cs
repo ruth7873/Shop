@@ -21,7 +21,7 @@ namespace Shop.Data.Repositories
         }
         public Provider GetProviderById(int id)
         {
-            return _context.Providers.Find(p => p.Id == id);
+            return _context.Providers.ToList().Find(p => p.Id == id);
         }
         public void AddProvider(Provider provider)
         {
@@ -29,14 +29,14 @@ namespace Shop.Data.Repositories
         }
         public void UpdateProvider(int id, Provider provider)
         {
-            Provider provider1 = _context.Providers.Find(p => p.Id == id);
+            Provider provider1 = _context.Providers.ToList().Find(p => p.Id == id);
             if (provider1 != null)
                 _context.Providers.Remove(provider1);
             _context.Providers.Add(provider);
         }
         public void DeleteProvider(int id)
         {
-            _context.Providers.Remove(_context.Providers.Find(p => p.Id == id));
+            _context.Providers.Remove(_context.Providers.ToList().Find(p => p.Id == id));
         }
     }
 }

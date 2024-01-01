@@ -17,7 +17,7 @@ namespace Shop.Data.Repositories
         }
         public Product GetProductById(int id)
         {
-            return _context.Products.Find(p => p.Id == id);
+            return _context.Products.ToList().Find(p => p.Id == id);
         }
         public void AddProduct(Product product)
         {
@@ -25,20 +25,20 @@ namespace Shop.Data.Repositories
         }
         public void UpdateProduct(int id, Product product)
         {
-            Product product1 = _context.Products.Find(p => p.Id == id);
+            Product product1 = _context.Products.ToList().Find(p => p.Id == id);
             if (product1 != null)
                 _context.Products.Remove(product1);
             _context.Products.Add(product);
         }
         public void UpdateProductPrice(int id, int price)
         {
-            Product product = _context.Products.Find(p => p.Id == id);
+            Product product = _context.Products.ToList().Find(p => p.Id == id);
             if (product != null)
-                _context.Products.Find(p => p.Id == id).Price = price;
+                _context.Products.ToList().Find(p => p.Id == id).Price = price;
         }
         public void DeleteProduct(int id)
         {
-            Product p = _context.Products.Find(p => p.Id == id);
+            Product p = _context.Products.ToList().Find(p => p.Id == id);
             if(p != null)
                 _context.Products.Remove(p);    
         }
