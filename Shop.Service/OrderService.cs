@@ -24,13 +24,13 @@ namespace Shop.Service
         {
             return _orderRepository.GetOrderById(id);
         }
-        public void AddOrder(Order order)
+        public Order AddOrder(Order order)
         {
-            _orderRepository.AddOrder(order);
+            return _orderRepository.AddOrder(order);
         }
-        public void UpdateOrder(int id, Order order)
+        public Order UpdateOrder(int id, Order order)
         {
-          _orderRepository.UpdateOrder(id, order);
+         return _orderRepository.UpdateOrder(id, order);
         }
         public void DeleteOrder(int id)
         {

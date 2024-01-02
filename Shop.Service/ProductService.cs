@@ -24,17 +24,17 @@ namespace Shop.Service
         {
             return _productRepository.GetProductById(id);
         }
-        public void AddProduct(Product product)
+        public Product AddProduct(Product product)
         {
-            _productRepository.AddProduct(product);
+           return _productRepository.AddProduct(product);
         }
-        public void UpdateProduct(int id, Product product)
+        public Product UpdateProduct(int id, Product product)
         {
-            _productRepository.UpdateProduct(id, product);
+           return _productRepository.UpdateProduct(id, product);
         }
-        public void UpdateProductPrice(int id, int price)
+        public Product UpdateProductPrice(int id, int price)
         {
-            _productRepository.UpdateProductPrice(id, price);
+           return _productRepository.UpdateProductPrice(id, price);
         }
         public void DeleteProduct(int id)
         {

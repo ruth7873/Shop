@@ -34,29 +34,30 @@ namespace Shop_ruthHershler.Controllers
 
         // POST api/<EmployeeController>
         [HttpPost]
-        public void Post([FromBody] Product product)
+        public ActionResult Post([FromBody] Product product)
         {
-           _productService.AddProduct(product);
+          return Ok(_productService.AddProduct(product));
         }
 
         // PUT api/<EmployeeController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Product product)
+        public ActionResult Put(int id, [FromBody] Product product)
         {
-      _productService.UpdateProduct(id, product);
+            return Ok(   _productService.UpdateProduct(id, product));
         }
         // PUT api/<EmployeeController>/5
         [HttpPut("{id}/price")]
-        public void Put(int id, [FromBody]  int price)
+        public ActionResult Put(int id, [FromBody]  int price)
         {
-           _productService.UpdateProductPrice(id, price);
+          return Ok( _productService.UpdateProductPrice(id, price));
         }
 
         // DELETE api/<EmployeeController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
           _productService.DeleteProduct(id);
+            return Ok();
         }
     }
 }

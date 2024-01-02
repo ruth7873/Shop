@@ -11,9 +11,9 @@ namespace Shop.Core.Service
     {
         IEnumerable<Product> GetProducts();
         Product GetProductById(int id);
-        void AddProduct(Product product);
-        void UpdateProduct(int id, Product product);
-        void UpdateProductPrice(int id, int price);
+        Product AddProduct(Product product);
+        Product UpdateProduct(int id, Product product);
+        Product UpdateProductPrice(int id, int price);
         void DeleteProduct(int id);
 
     }

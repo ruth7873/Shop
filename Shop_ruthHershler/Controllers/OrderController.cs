@@ -35,23 +35,24 @@ namespace Shop_ruthHershler.Controllers
 
         // POST api/<OrderController>
         [HttpPost]
-        public void Post([FromBody] Order order)
+        public ActionResult Post([FromBody] Order order)
         {
-            _orderService.AddOrder(order);
+           return Ok( _orderService.AddOrder(order));
         }
 
         // PUT api/<OrderController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Order order)
+        public ActionResult Put(int id, [FromBody] Order order)
         {
-            _orderService.UpdateOrder(id,order);
+          return Ok( _orderService.UpdateOrder(id,order));
         }
 
         // DELETE api/<OrderController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
             _orderService.DeleteOrder(id);
+            return Ok();
         }
     }
 }

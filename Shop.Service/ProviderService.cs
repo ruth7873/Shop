@@ -24,13 +24,14 @@ namespace Shop.Service
         {
             return _providerRepository.GetProviderById(id);
         }
-        public void AddProvider(Provider provider)
+        public Provider AddProvider(Provider provider)
         {
-           _providerRepository.AddProvider(provider);
+          return _providerRepository.AddProvider(provider);
         }
-        public void UpdateProvider(int id, Provider provider)
+        public Provider UpdateProvider(int id, Provider provider)
         {
-            _providerRepository.UpdateProvider(id, provider);
+           return _providerRepository.UpdateProvider(id, provider);
+            
         }
         public void DeleteProvider(int id)
         {

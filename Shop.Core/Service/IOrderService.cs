@@ -11,8 +11,8 @@ namespace Shop.Core.Service
     {
         IEnumerable<Order> GetAllOrders();
         Order GetOrderByID(int id);
-        void AddOrder(Order order);
-        void UpdateOrder(int id,Order order);
+        Order AddOrder(Order order);
+        Order UpdateOrder(int id,Order order);
         void DeleteOrder(int id);
     }
 }

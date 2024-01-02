@@ -17,30 +17,43 @@ namespace Shop.Data.Repositories
         }
         public Product GetProductById(int id)
         {
-            return _context.Products.ToList().Find(p => p.Id == id);
+            return _context.Products.Find(id);
         }
-        public void AddProduct(Product product)
+        public Product AddProduct(Product product)
         {
             _context.Products.Add(product);
+            _context.SaveChanges();
+            return product;
+
         }
-        public void UpdateProduct(int id, Product product)
+        public Product UpdateProduct(int id, Product product)
         {
-            Product product1 = _context.Products.ToList().Find(p => p.Id == id);
+            Product product1 = _context.Products.Find(id);
             if (product1 != null)
-                _context.Products.Remove(product1);
-            _context.Products.Add(product);
+            {
+                product1.Price = product.Price;
+                product1.Qty = product.Qty;
+                product1.Name=product.Name;
+            }
+            _context.SaveChanges();
+            return product1;
+
         }
-        public void UpdateProductPrice(int id, int price)
+        public Product UpdateProductPrice(int id, int price)
         {
-            Product product = _context.Products.ToList().Find(p => p.Id == id);
+            Product product = _context.Products.Find(id);
             if (product != null)
-                _context.Products.ToList().Find(p => p.Id == id).Price = price;
+                _context.Products.Find(id).Price = price;
+            _context.SaveChanges();
+            return product;
+
         }
         public void DeleteProduct(int id)
         {
-            Product p = _context.Products.ToList().Find(p => p.Id == id);
+            Product p = _context.Products.Find(id);
             if(p != null)
-                _context.Products.Remove(p);    
+                _context.Products.Remove(p);   
+            _context.SaveChanges();
         }
     }
 }

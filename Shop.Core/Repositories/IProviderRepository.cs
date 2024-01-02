@@ -7,8 +7,8 @@ namespace Shop.Core.Repositories
     {
         IEnumerable<Provider> GetProviders();        
         Provider GetProviderById(int id);
-        void AddProvider(Provider provider);
-        void UpdateProvider(int id,Provider provider);
+        Provider AddProvider(Provider provider);
+        Provider UpdateProvider(int id,Provider provider);
         void DeleteProvider(int id);
     }
 }

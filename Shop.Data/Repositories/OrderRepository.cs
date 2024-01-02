@@ -21,22 +21,33 @@ namespace Shop.Data.Repositories
         }
         public Order GetOrderById(int id)
         {
-            return _context.Orders.ToList().Find(o => o.Id == id);  
+            return _context.Orders.Find(id);
         }
-        public void AddOrder(Order order)
+        public Order AddOrder(Order order)
         {
             _context.Orders.Add(order);
+            _context.SaveChanges();
+            return order;
         }
-        public void UpdateOrder(int id, Order order)
+        public Order UpdateOrder(int id, Order order)
         {
-            Order order1 = _context.Orders.ToList().Find(o => o.Id == id);
-        if(order1 != null) 
-                _context.Orders.Remove(order1);
-            _context.Orders.Add(order);
+            Order order1 = _context.Orders.Find(id);
+            if (order1 != null)
+            {
+                order1.Count=order.Count;
+                order1.SumOrder = order.SumOrder;
+                order1.ProductId = order.ProductId;
+                order1.ProviderId = order.ProviderId;
+            }
+            _context.SaveChanges();
+            return order1;
+
         }
         public void DeleteOrder(int id)
         {
-            _context.Orders.Remove(_context.Orders.ToList().Find(o =>o.Id == id));
+            _context.Orders.Remove(_context.Orders.Find(id));
+            _context.SaveChanges();
+
         }
     }
 }
