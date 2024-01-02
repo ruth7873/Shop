@@ -12,6 +12,5 @@ namespace Shop.Data
         {
             optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=sample_db");
         }
-
     }
 }
