@@ -34,9 +34,9 @@ namespace Shop.Data.Repositories
             Order order1 = _context.Orders.Find(id);
             if (order1 != null)
             {
-                order1.Count=order.Count;
+                //order1.Count=order.Count;
                 order1.SumOrder = order.SumOrder;
-                order1.ProductId = order.ProductId;
+                //order1.ProductId = order.ProductId;
                 order1.ProviderId = order.ProviderId;
             }
             _context.SaveChanges();

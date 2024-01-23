@@ -12,5 +12,9 @@ namespace Shop.Data
         {
             optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=Shop_db");
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ProductOrder>().HasKey(po => new { po.OrderId, po.ProductId });
+        }
     }
 }

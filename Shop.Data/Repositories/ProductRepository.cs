@@ -32,7 +32,7 @@ namespace Shop.Data.Repositories
             if (product1 != null)
             {
                 product1.Price = product.Price;
-                product1.Qty = product.Qty;
+                product1.Quantity = product.Quantity;
                 product1.Name=product.Name;
             }
             _context.SaveChanges();
