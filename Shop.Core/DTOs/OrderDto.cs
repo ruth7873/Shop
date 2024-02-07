@@ -11,7 +11,7 @@ namespace Shop.Core.DTOs
         public int Id { get; set; }
         public int ProviderId { get; set; }
         public int SumOrder { get; set; }
-        public List<ProductOrderDto> Products { get; set; }
+        //public List<ProductOrderDto> Products { get; set; }
 
     }
 }

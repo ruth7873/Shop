@@ -10,9 +10,9 @@ namespace Shop.Core
 {
     public class Mapping
     {
-        //public OrderDto MapToOrderDto(Order order)
-        //{
-        //    return new OrderDto { Id = order.Id, Name = user.Name, Email = user.Email, Password = user.Password, PlanId = user.PlanId };
-        //}
+        public OrderDto MapToOrderDto(Order order)
+        {
+            return new OrderDto { Id = order.Id, ProviderId = order.ProviderId, SumOrder = order.SumOrder  };
+        }
     }
 }
