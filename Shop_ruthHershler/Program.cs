@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Shop.API.Mapping;
+using Shop.Core;
 using Shop.Core.Repositories;
 using Shop.Core.Service;
 using Shop.Data;
@@ -21,6 +24,14 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProviderService,ProviderService>();
 //builder.Services.AddSingleton<DataContext>();
 builder.Services.AddDbContext<DataContext>();
+
+builder.Services.AddAutoMapper(typeof(MappingProfile), typeof(ApiMappingProfile));
+//builder.Services.AddDbContext<DataContext>(
+//    options => options.UseSqlServer(builder.Configuration["ConnectionString"]));
+//Console.WriteLine(builder.Configuration["ApplicationName"]);
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

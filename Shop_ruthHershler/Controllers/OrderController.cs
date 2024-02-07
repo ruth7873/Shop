@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Shop.API.Model;
+using Shop.Core.DTOs;
 using Shop.Core.Entities;
 using Shop.Core.Service;
 
@@ -11,9 +14,14 @@ namespace Shop_ruthHershler.Controllers
     public class OrderController : ControllerBase
     {
         private readonly IOrderService _orderService;
-        public OrderController(IOrderService orderService)
+        private readonly IMapper _mapper;
+        private readonly IConfiguration _config;
+
+        public OrderController(IOrderService orderService, IMapper mapper, IConfiguration config)
         {
-            _orderService = orderService;     
+            _orderService = orderService;
+            _mapper = mapper;
+            _config = config;
         }
         
         // GET: api/<OrderController>
@@ -35,11 +43,14 @@ namespace Shop_ruthHershler.Controllers
 
         // POST api/<OrderController>
         [HttpPost]
-        public ActionResult Post([FromBody] Order order)
+        public ActionResult Post([FromBody] OrderPostModel order)
         {
-           return Ok( _orderService.AddOrder(order));
+            var orderToAdd = _mapper.Map<Order>(order);
+            var addedOrder = _orderService.AddOrder(orderToAdd);
+            var newOrder = _orderService.GetOrderByID(addedOrder.Id);
+            var orderDto = _mapper.Map<OrderDto>(newOrder);
+            return Ok(orderDto);
         }
-
         // PUT api/<OrderController>/5
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] Order order)
