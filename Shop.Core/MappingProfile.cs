@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿
+using AutoMapper;
 using Shop.Core.DTOs;
 using Shop.Core.Entities;
 using System;
@@ -9,11 +10,12 @@ using System.Threading.Tasks;
 
 namespace Shop.Core
 {
-    public class MappingProfile:Profile
+    public class MappingProfile : Profile
     {
         public MappingProfile()
         {
             CreateMap<Order, OrderDto>().ReverseMap();
+            CreateMap<ProductOrder, ProductOrderDto>().ReverseMap();
         }
     }
 }

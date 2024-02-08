@@ -7,7 +7,6 @@
         //public int Count {  get; set; }
         public int ProviderId { get; set; }
         public  int SumOrder { get; set; }
-
         public List<ProductOrder> Products { get; set; }
     }
 }

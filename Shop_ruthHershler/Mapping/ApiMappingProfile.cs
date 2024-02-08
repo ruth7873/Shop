@@ -10,6 +10,7 @@ namespace Shop.API.Mapping
         {
             CreateMap <OrderPostModel,Order> ();
             CreateMap <ProductOrderPostModel,ProductOrder> ();
+
         }
     }
 }

@@ -24,7 +24,6 @@ namespace Shop.Data.Repositories
             _context.Products.Add(product);
             _context.SaveChanges();
             return product;
-
         }
         public Product UpdateProduct(int id, Product product)
         {

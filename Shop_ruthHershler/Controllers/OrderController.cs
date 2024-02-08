@@ -36,9 +36,10 @@ namespace Shop_ruthHershler.Controllers
         public IActionResult Get(int id)
         {
             var ord = _orderService.GetOrderByID(id);
-            if (ord == null)
+            var orderDto = _mapper.Map<OrderDto>(ord);
+            if (orderDto == null)
                 return NotFound();
-            return Ok(ord);
+            return Ok(orderDto);
         }
 
         // POST api/<OrderController>
