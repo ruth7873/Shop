@@ -28,6 +28,7 @@ namespace Shop_ruthHershler.Controllers
         [HttpGet]
         public ActionResult Get()
         {
+
             return Ok(_orderService.GetAllOrders());
         }
 

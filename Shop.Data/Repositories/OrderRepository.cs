@@ -1,4 +1,5 @@
-﻿using Shop.Core.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Shop.Core.Entities;
 using Shop.Core.Repositories;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace Shop.Data.Repositories
         }
         public IEnumerable<Order> GetOrders()
         {
-            return _context.Orders;
+            return _context.Orders.Include(o=>o.Products);
         }
         public Order GetOrderById(int id)
         {

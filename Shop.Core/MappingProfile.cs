@@ -16,6 +16,7 @@ namespace Shop.Core
         {
             CreateMap<Order, OrderDto>().ReverseMap();
             CreateMap<ProductOrder, ProductOrderDto>().ReverseMap();
+
         }
     }
 }
