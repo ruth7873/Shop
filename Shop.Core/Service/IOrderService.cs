@@ -9,10 +9,10 @@ namespace Shop.Core.Service
 {
     public interface IOrderService
     {
-        IEnumerable<Order> GetAllOrders();
-        Order GetOrderByID(int id);
-        Order AddOrder(Order order);
-        Order UpdateOrder(int id,Order order);
-        void DeleteOrder(int id);
+        Task<IEnumerable<Order>> GetAllOrdersAsync();
+        Task<Order> GetOrderByIDAsync(int id);
+        Task<Order> AddOrderAsync(Order order);
+        Task<Order> UpdateOrderAsync(int id, Order order);
+        void DeleteOrderAsync(int id);
     }
 }

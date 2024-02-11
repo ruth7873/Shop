@@ -16,21 +16,21 @@ namespace Shop.Data.Repositories
         {
             _context = context;
         }
-        public IEnumerable<Order> GetOrders()
+        public async Task<IEnumerable<Order>> GetOrdersAsync()
         {
-            return _context.Orders.Include(o=>o.Products);
+            return await _context.Orders.Include(o => o.Products).ToListAsync();
         }
-        public Order GetOrderById(int id)
+        public async Task<Order> GetOrderByIdAsync(int id)
         {
-            return _context.Orders.Find(id);
+            return await _context.Orders.FindAsync(id);
         }
-        public Order AddOrder(Order order)
+        public async Task<Order> AddOrderAsync(Order order)
         {
             _context.Orders.Add(order);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return order;
         }
-        public Order UpdateOrder(int id, Order order)
+        public async Task<Order> UpdateOrderAsync(int id, Order order)
         {
             Order order1 = _context.Orders.Find(id);
             if (order1 != null)
@@ -40,14 +40,14 @@ namespace Shop.Data.Repositories
                 //order1.ProductId = order.ProductId;
                 order1.ProviderId = order.ProviderId;
             }
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return order1;
 
         }
-        public void DeleteOrder(int id)
+        public async void DeleteOrderAsync(int id)
         {
             _context.Orders.Remove(_context.Orders.Find(id));
-            _context.SaveChanges();
+           await _context.SaveChangesAsync();
 
         }
     }

@@ -28,8 +28,9 @@ namespace Shop_ruthHershler.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-
-            return Ok(_orderService.GetAllOrders());
+            var ord = _orderService.GetAllOrders();
+            var orderDto = ord.Select(o=>_mapper.Map<OrderDto>(o));
+            return Ok(orderDto);
         }
 
         // GET api/<OrderController>/5

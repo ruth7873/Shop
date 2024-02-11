@@ -4,10 +4,10 @@ namespace Shop.Core.Repositories
 {
     public interface IOrderRepository
     {
-        IEnumerable<Order> GetOrders();
-        Order GetOrderById(int id);
-        Order AddOrder(Order order);
-        Order UpdateOrder(int id,Order order);
-        void DeleteOrder(int id);
+        Task<IEnumerable<Order>> GetOrdersAsync();
+        Task<Order> GetOrderByIdAsync(int id);
+        Task<Order> AddOrderAsync(Order order);
+        Task<Order> UpdateOrderAsync(int id, Order order);
+        void DeleteOrderAsync(int id);
     }
 }

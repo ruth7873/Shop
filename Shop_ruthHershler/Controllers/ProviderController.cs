@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Shop.API.Model;
 using Shop.Core.Entities;
 using Shop.Core.Service;
+using Shop.Service;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,9 +14,12 @@ namespace Shop_ruthHershler.Controllers
     public class ProviderController : ControllerBase
     {
         private readonly IProviderService _providerService;
-        public ProviderController(IProviderService providerService)
+        private readonly IMapper _mapper;
+
+        public ProviderController(IProviderService providerService,IMapper mapper)
         {
             _providerService = providerService;
+            _mapper = mapper;
         }
         // GET: api/<EmployeeController>
         [HttpGet]
@@ -34,9 +40,13 @@ namespace Shop_ruthHershler.Controllers
 
         // POST api/<EmployeeController>
         [HttpPost]
-        public ActionResult Post([FromBody] Provider provider)
+        public ActionResult Post([FromBody] ProviderPostModel provider)
         {
-           return Ok(_providerService.AddProvider(provider));
+            var providerToAdd = _mapper.Map<Provider>(provider);
+            var addedProvider = _providerService.AddProvider(providerToAdd);
+            var newProduct = _providerService.GetProviderById(addedProvider.Id);
+            //var productDto = _mapper.Map<OrderDto>(newProduct);
+            return Ok(newProduct);
         }
 
         // PUT api/<EmployeeController>/5

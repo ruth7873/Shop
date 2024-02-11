@@ -16,25 +16,25 @@ namespace Shop.Service
         {
             _orderRepository = orderRepository;
         }
-        public IEnumerable<Order> GetAllOrders()
+        public async Task<IEnumerable<Order>> GetAllOrdersAsync()
         {
-            return _orderRepository.GetOrders();
+            return await _orderRepository.GetOrdersAsync();
         }
-        public Order GetOrderByID(int id)
+        public async Task<Order> GetOrderByIDAsync(int id)
         {
-            return _orderRepository.GetOrderById(id);
+            return await _orderRepository.GetOrderByIdAsync(id);
         }
-        public Order AddOrder(Order order)
+        public async Task<Order> AddOrderAsync(Order order)
         {
-            return _orderRepository.AddOrder(order);
+            return await _orderRepository.AddOrderAsync(order);
         }
-        public Order UpdateOrder(int id, Order order)
+        public async Task<Order> UpdateOrderAsync(int id, Order order)
         {
-         return _orderRepository.UpdateOrder(id, order);
+         return await _orderRepository.UpdateOrderAsync(id, order);
         }
         public void DeleteOrder(int id)
         {
-            _orderRepository.DeleteOrder(id);
+            _orderRepository.DeleteOrderAsync(id);
         }
     }
 }

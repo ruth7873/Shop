@@ -5,10 +5,10 @@ namespace Shop.Core.Repositories
 {
     public interface IProviderRepository
     {
-        IEnumerable<Provider> GetProviders();        
-        Provider GetProviderById(int id);
-        Provider AddProvider(Provider provider);
-        Provider UpdateProvider(int id,Provider provider);
-        void DeleteProvider(int id);
+        Task<IEnumerable<Provider>> GetProvidersAsync();
+        Task<Provider> GetProviderByIdAsync(int id);
+        Task<Provider> AddProviderAsync(Provider provider);
+        Task<Provider> UpdateProviderAsync(int id, Provider provider);
+        void DeleteProviderAsync(int id);
     }
 }

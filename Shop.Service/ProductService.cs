@@ -16,29 +16,29 @@ namespace Shop.Service
         {
             _productRepository = productRepository;
         }
-        IEnumerable<Product> IProductService.GetProducts()
+       public async Task<IEnumerable<Product>> GetProductsAsync()
         {
-            return _productRepository.GetProducts();
+            return await _productRepository.GetProductsAsync();
         }
-        public Product GetProductById(int id)
+        public async Task<Product> GetProductByIdAsync(int id)
         {
-            return _productRepository.GetProductById(id);
+            return await _productRepository.GetProductByIdAsync(id);
         }
-        public Product AddProduct(Product product)
+        public async Task<Product> AddProductAsync(Product product)
         {
-           return _productRepository.AddProduct(product);
+           return await _productRepository.AddProductAsync(product);
         }
-        public Product UpdateProduct(int id, Product product)
+        public async Task<Product> UpdateProductAsync(int id, Product product)
         {
-           return _productRepository.UpdateProduct(id, product);
+           return await _productRepository.UpdateProductAsync(id, product);
         }
-        public Product UpdateProductPrice(int id, int price)
+        public async Task<Product> UpdateProductPriceAsync(int id, int price)
         {
-           return _productRepository.UpdateProductPrice(id, price);
+           return await _productRepository.UpdateProductPriceAsync(id, price);
         }
-        public void DeleteProduct(int id)
+        public void DeleteProductAsync(int id)
         {
-            _productRepository.DeleteProduct(id);
+            _productRepository.DeleteProductAsync(id);
         }
     }
 }

@@ -8,8 +8,10 @@ namespace Shop.API.Mapping
     {
         public ApiMappingProfile()
         {
-            CreateMap <OrderPostModel,Order> ();
-            CreateMap <ProductOrderPostModel,ProductOrder> ();
+            CreateMap <OrderPostModel,Order> ().ReverseMap();
+            CreateMap <ProductOrderPostModel,ProductOrder> ().ReverseMap();
+            CreateMap <ProductPostModel,Product> ().ReverseMap();
+            CreateMap <ProviderPostModel,Provider> ().ReverseMap();
 
         }
     }

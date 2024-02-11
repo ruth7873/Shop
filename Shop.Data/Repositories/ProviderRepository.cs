@@ -1,4 +1,5 @@
-﻿using Shop.Core.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Shop.Core.Entities;
 using Shop.Core.Repositories;
 using System;
 using System.Collections.Generic;
@@ -15,21 +16,21 @@ namespace Shop.Data.Repositories
         {
             _context = dataContext;
         }
-        public IEnumerable<Provider> GetProviders()
+        public async Task<IEnumerable<Provider>> GetProvidersAsync()
         {
-            return _context.Providers;
+            return await _context.Providers.ToListAsync();
         }
-        public Provider GetProviderById(int id)
+        public async Task<Provider> GetProviderByIdAsync(int id)
         {
-            return _context.Providers.Find(id);
+            return await _context.Providers.FindAsync(id);
         }
-        public Provider AddProvider(Provider provider)
+        public async Task<Provider> AddProviderAsync(Provider provider)
         {
             _context.Providers.Add(provider);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return provider;
         }
-        public Provider UpdateProvider(int id, Provider provider)
+        public async Task<Provider> UpdateProviderAsync(int id, Provider provider)
         {
             Provider provider1 = _context.Providers.Find(id);
             if (provider1 != null)
@@ -37,15 +38,15 @@ namespace Shop.Data.Repositories
                 provider1.Name = provider.Name;
                 provider1.Debt = provider.Debt;
                 provider1.City = provider.City;
-                
+
             }
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return provider1;
         }
-        public void DeleteProvider(int id)
+        public async void DeleteProviderAsync(int id)
         {
             _context.Providers.Remove(_context.Providers.Find(id));
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }
