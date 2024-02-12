@@ -16,26 +16,26 @@ namespace Shop.Service
         {
             _providerRepository = providerRepository;
         }
-        public IEnumerable<Provider> GetProviders()
+        public async Task<IEnumerable<Provider>> GetProvidersAsync()
         {
-           return _providerRepository.GetProviders();
+           return await _providerRepository.GetProvidersAsync();
         }
-        public Provider GetProviderById(int id)
+        public async Task<Provider> GetProviderByIdAsync(int id)
         {
-            return _providerRepository.GetProviderById(id);
+            return await _providerRepository.GetProviderByIdAsync(id);
         }
-        public Provider AddProvider(Provider provider)
+        public async Task<Provider> AddProviderAsync(Provider provider)
         {
-          return _providerRepository.AddProvider(provider);
+          return await _providerRepository.AddProviderAsync(provider);
         }
-        public Provider UpdateProvider(int id, Provider provider)
+        public async Task<Provider> UpdateProviderAsync(int id, Provider provider)
         {
-           return _providerRepository.UpdateProvider(id, provider);
+           return await _providerRepository.UpdateProviderAsync(id, provider);
             
         }
-        public void DeleteProvider(int id)
+        public void DeleteProviderAsync(int id)
         {
-          _providerRepository.DeleteProvider(id);
+          _providerRepository.DeleteProviderAsync(id);
         }
     }
 }

@@ -23,21 +23,21 @@ namespace Shop_ruthHershler.Controllers
             _mapper = mapper;
             _config = config;
         }
-        
+
         // GET: api/<OrderController>
         [HttpGet]
-        public ActionResult Get()
+        public async Task<ActionResult> Get()
         {
-            var ord = _orderService.GetAllOrders();
-            var orderDto = ord.Select(o=>_mapper.Map<OrderDto>(o));
+            var ord = await _orderService.GetAllOrdersAsync();
+            var orderDto = ord.Select(o => _mapper.Map<OrderDto>(o));
             return Ok(orderDto);
         }
 
         // GET api/<OrderController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var ord = _orderService.GetOrderByID(id);
+            var ord = await _orderService.GetOrderByIDAsync(id);
             var orderDto = _mapper.Map<OrderDto>(ord);
             if (orderDto == null)
                 return NotFound();
@@ -46,26 +46,27 @@ namespace Shop_ruthHershler.Controllers
 
         // POST api/<OrderController>
         [HttpPost]
-        public ActionResult Post([FromBody] OrderPostModel order)
+        public async Task<ActionResult> Post([FromBody] OrderPostModel order)
         {
             var orderToAdd = _mapper.Map<Order>(order);
-            var addedOrder = _orderService.AddOrder(orderToAdd);
-            var newOrder = _orderService.GetOrderByID(addedOrder.Id);
+            var addedOrder = await _orderService.AddOrderAsync(orderToAdd);
+            var newOrder = await _orderService.GetOrderByIDAsync(addedOrder.Id);
             var orderDto = _mapper.Map<OrderDto>(newOrder);
             return Ok(orderDto);
         }
         // PUT api/<OrderController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] Order order)
+        public async Task<ActionResult> Put(int id, [FromBody] Order order)
         {
-          return Ok( _orderService.UpdateOrder(id,order));
+            var updatedOrd = await _orderService.UpdateOrderAsync(id, order);
+            return Ok(updatedOrd);
         }
 
         // DELETE api/<OrderController>/5
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            _orderService.DeleteOrder(id);
+            _orderService.DeleteOrderAsync(id);
             return Ok();
         }
     }

@@ -26,14 +26,14 @@ namespace Shop_ruthHershler.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_productService.GetProducts());
+            return Ok(_productService.GetProductsAsync());
         }
 
         // GET api/<EmployeeController>/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var prod = _productService.GetProductById(id);
+            var prod = _productService.GetProductByIdAsync(id);
             if (prod == null)
                 return NotFound();
             return Ok(prod);
@@ -44,8 +44,8 @@ namespace Shop_ruthHershler.Controllers
         public ActionResult Post([FromBody] ProductPostModel product)
         {
             var productToAdd = _mapper.Map<Product>(product);
-            var addedProduct = _productService.AddProduct(productToAdd);
-            var newProduct = _productService.GetProductById(addedProduct.Id);
+            var addedProduct = _productService.AddProductAsync(productToAdd);
+            var newProduct = _productService.GetProductByIdAsync(addedProduct.Id);
             //var productDto = _mapper.Map<OrderDto>(newProduct);
             return Ok(newProduct);
         }
@@ -54,20 +54,20 @@ namespace Shop_ruthHershler.Controllers
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] Product product)
         {
-            return Ok(   _productService.UpdateProduct(id, product));
+            return Ok(   _productService.UpdateProductAsync(id, product));
         }
         // PUT api/<EmployeeController>/5
         [HttpPut("{id}/price")]
         public ActionResult Put(int id, [FromBody]  int price)
         {
-          return Ok( _productService.UpdateProductPrice(id, price));
+          return Ok( _productService.UpdateProductPriceAsync(id, price));
         }
 
         // DELETE api/<EmployeeController>/5
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-          _productService.DeleteProduct(id);
+          _productService.DeleteProductAsync(id);
             return Ok();
         }
     }

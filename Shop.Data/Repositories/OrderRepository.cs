@@ -46,8 +46,12 @@ namespace Shop.Data.Repositories
         }
         public async void DeleteOrderAsync(int id)
         {
-            _context.Orders.Remove(_context.Orders.Find(id));
-           await _context.SaveChangesAsync();
+            var ord = await _context.Orders.FindAsync(id);
+            if (ord != null)
+            {
+                _context.Orders.Remove(ord);
+                await _context.SaveChangesAsync();
+            }
 
         }
     }

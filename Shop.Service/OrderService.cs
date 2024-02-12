@@ -32,7 +32,7 @@ namespace Shop.Service
         {
          return await _orderRepository.UpdateOrderAsync(id, order);
         }
-        public void DeleteOrder(int id)
+        public void DeleteOrderAsync(int id)
         {
             _orderRepository.DeleteOrderAsync(id);
         }

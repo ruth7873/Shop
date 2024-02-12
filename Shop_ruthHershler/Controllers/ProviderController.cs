@@ -16,7 +16,7 @@ namespace Shop_ruthHershler.Controllers
         private readonly IProviderService _providerService;
         private readonly IMapper _mapper;
 
-        public ProviderController(IProviderService providerService,IMapper mapper)
+        public ProviderController(IProviderService providerService, IMapper mapper)
         {
             _providerService = providerService;
             _mapper = mapper;
@@ -25,17 +25,17 @@ namespace Shop_ruthHershler.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_providerService.GetProviders());
+            return Ok(_providerService.GetProvidersAsync());
         }
 
         // GET api/<EmployeeController>/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var provider = _providerService.GetProviderById(id);
-            if(provider == null)
+            var provider = _providerService.GetProviderByIdAsync(id);
+            if (provider == null)
                 return NotFound();
-            return Ok(provider);  
+            return Ok(provider);
         }
 
         // POST api/<EmployeeController>
@@ -43,8 +43,8 @@ namespace Shop_ruthHershler.Controllers
         public ActionResult Post([FromBody] ProviderPostModel provider)
         {
             var providerToAdd = _mapper.Map<Provider>(provider);
-            var addedProvider = _providerService.AddProvider(providerToAdd);
-            var newProduct = _providerService.GetProviderById(addedProvider.Id);
+            var addedProvider = _providerService.AddProviderAsync(providerToAdd);
+            var newProduct = _providerService.GetProviderByIdAsync(addedProvider.Id);
             //var productDto = _mapper.Map<OrderDto>(newProduct);
             return Ok(newProduct);
         }
@@ -53,14 +53,14 @@ namespace Shop_ruthHershler.Controllers
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] Provider provider)
         {
-              return Ok(_providerService.UpdateProvider(id, provider));    
+            return Ok(_providerService.UpdateProviderAsync(id, provider));
         }
 
         // DELETE api/<EmployeeController>/5
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-           _providerService.DeleteProvider(id);
+            _providerService.DeleteProviderAsync(id);
             return Ok();
         }
     }
