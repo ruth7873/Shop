@@ -45,8 +45,11 @@ namespace Shop.Data.Repositories
         }
         public async void DeleteProviderAsync(int id)
         {
-            _context.Providers.Remove(_context.Providers.Find(id));
-            await _context.SaveChangesAsync();
+            if (_context.Providers.Find(id) != null)
+            {
+                _context.Providers.Remove(_context.Providers.Find(id));
+                _context.SaveChangesAsync();
+            }
         }
     }
 }

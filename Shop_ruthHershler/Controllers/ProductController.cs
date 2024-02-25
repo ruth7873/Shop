@@ -24,16 +24,17 @@ namespace Shop_ruthHershler.Controllers
         }
         // GET: api/<EmployeeController>
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            return Ok(_productService.GetProductsAsync());
+            var products = await _productService.GetProductsAsync();
+            return Ok(products);
         }
 
         // GET api/<EmployeeController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var prod = _productService.GetProductByIdAsync(id);
+            var prod = await _productService.GetProductByIdAsync(id);
             if (prod == null)
                 return NotFound();
             return Ok(prod);
@@ -41,33 +42,35 @@ namespace Shop_ruthHershler.Controllers
 
         // POST api/<EmployeeController>
         [HttpPost]
-        public ActionResult Post([FromBody] ProductPostModel product)
+        public async Task<IActionResult> Post([FromBody] ProductPostModel product)
         {
             var productToAdd = _mapper.Map<Product>(product);
-            var addedProduct = _productService.AddProductAsync(productToAdd);
-            var newProduct = _productService.GetProductByIdAsync(addedProduct.Id);
+            var addedProduct = await _productService.AddProductAsync(productToAdd);
+            var newProduct = await _productService.GetProductByIdAsync(addedProduct.Id);
             //var productDto = _mapper.Map<OrderDto>(newProduct);
             return Ok(newProduct);
         }
 
         // PUT api/<EmployeeController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] Product product)
+        public async Task<IActionResult> Put(int id, [FromBody] Product product)
         {
-            return Ok(   _productService.UpdateProductAsync(id, product));
+            var p = await _productService.UpdateProductAsync(id, product);
+            return Ok(p);
         }
         // PUT api/<EmployeeController>/5
         [HttpPut("{id}/price")]
-        public ActionResult Put(int id, [FromBody]  int price)
+        public async Task<IActionResult> Put(int id, [FromBody] int price)
         {
-          return Ok( _productService.UpdateProductPriceAsync(id, price));
+            var p = await _productService.UpdateProductPriceAsync(id, price);
+            return Ok(p);
         }
 
         // DELETE api/<EmployeeController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-          _productService.DeleteProductAsync(id);
+            _productService.DeleteProductAsync(id);
             return Ok();
         }
     }

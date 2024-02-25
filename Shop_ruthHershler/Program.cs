@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Shop.API.Mapping;
+using Shop.API.Middlewares;
 using Shop.Core;
 using Shop.Core.Repositories;
 using Shop.Core.Service;
@@ -51,6 +52,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<ShabbosMiddleware>();
 
 app.MapControllers();
 

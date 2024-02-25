@@ -23,16 +23,17 @@ namespace Shop_ruthHershler.Controllers
         }
         // GET: api/<EmployeeController>
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            return Ok(_providerService.GetProvidersAsync());
+            var p=await _providerService.GetProvidersAsync();
+            return Ok(p);
         }
 
         // GET api/<EmployeeController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var provider = _providerService.GetProviderByIdAsync(id);
+            var provider =await _providerService.GetProviderByIdAsync(id);
             if (provider == null)
                 return NotFound();
             return Ok(provider);
@@ -40,25 +41,26 @@ namespace Shop_ruthHershler.Controllers
 
         // POST api/<EmployeeController>
         [HttpPost]
-        public ActionResult Post([FromBody] ProviderPostModel provider)
+        public async Task<IActionResult> Post([FromBody] ProviderPostModel provider)
         {
             var providerToAdd = _mapper.Map<Provider>(provider);
-            var addedProvider = _providerService.AddProviderAsync(providerToAdd);
-            var newProduct = _providerService.GetProviderByIdAsync(addedProvider.Id);
+            var addedProvider =await _providerService.AddProviderAsync(providerToAdd);
+            var newProduct =await _providerService.GetProviderByIdAsync(addedProvider.Id);
             //var productDto = _mapper.Map<OrderDto>(newProduct);
             return Ok(newProduct);
         }
 
         // PUT api/<EmployeeController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] Provider provider)
+        public async Task<IActionResult> Put(int id, [FromBody] Provider provider)
         {
-            return Ok(_providerService.UpdateProviderAsync(id, provider));
+            var p = await _providerService.UpdateProviderAsync(id, provider);
+            return Ok(p);
         }
 
         // DELETE api/<EmployeeController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             _providerService.DeleteProviderAsync(id);
             return Ok();

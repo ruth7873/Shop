@@ -56,10 +56,13 @@ namespace Shop_ruthHershler.Controllers
         }
         // PUT api/<OrderController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] Order order)
+        public async Task<ActionResult> Put(int id, [FromBody] OrderPostModel order)
         {
-            var updatedOrd = await _orderService.UpdateOrderAsync(id, order);
-            return Ok(updatedOrd);
+            var orderToUpdate = _mapper.Map<Order>(order);
+            var updatedOrder = await _orderService.UpdateOrderAsync(id,orderToUpdate);
+            var newOrder = await _orderService.GetOrderByIDAsync(updatedOrder.Id);
+            var orderDto = _mapper.Map<OrderDto>(newOrder);
+            return Ok(orderDto);
         }
 
         // DELETE api/<OrderController>/5

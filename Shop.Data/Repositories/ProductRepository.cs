@@ -53,7 +53,7 @@ namespace Shop.Data.Repositories
             Product p = _context.Products.Find(id);
             if (p != null)
                 _context.Products.Remove(p);
-            await _context.SaveChangesAsync();
+             _context.SaveChangesAsync();
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Shop.Data.Repositories
         }
         public async Task<Order> GetOrderByIdAsync(int id)
         {
-            return await _context.Orders.FindAsync(id);
+            return await _context.Orders.Include(o=>o.Products).FirstAsync(o=>o.Id==id);
         }
         public async Task<Order> AddOrderAsync(Order order)
         {
